@@ -1,0 +1,953 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#081a36">
+  <meta name="description" content="Diagnóstico de autoridade digital: avalie 10 critérios de posicionamento, conteúdo, performance e encontrabilidade.">
+  <title>Checklist de Autoridade Digital | Wendell Soares</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --navy: #081a36;
+      --navy-2: #0d2749;
+      --navy-3: #12375f;
+      --blue: #286092;
+      --gold: #f3c85d;
+      --gold-2: #ffe29a;
+      --cream: #faf4e1;
+      --ice: #eaf0f7;
+      --muted: #a9b9ca;
+      --line: rgba(190, 211, 235, .17);
+      --green: #8ed8b0;
+      --red: #ffb0a8;
+      --shadow: 0 28px 90px rgba(0, 0, 0, .42);
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; }
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+      color: var(--ice);
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(38, 94, 148, .28), transparent 42%),
+        radial-gradient(ellipse at 8% 88%, rgba(243, 200, 93, .08), transparent 32%),
+        #030d1d;
+    }
+
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    button:focus-visible, input:focus-visible, a:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    .app {
+      position: relative;
+      isolation: isolate;
+      display: flex;
+      flex-direction: column;
+      width: min(560px, calc(100vw - 44px), calc((100svh - 44px) * .8));
+      aspect-ratio: 4 / 5;
+      max-height: calc(100svh - 44px);
+      overflow: hidden;
+      border: 1px solid rgba(183, 209, 236, .24);
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at 92% 13%, rgba(42, 100, 157, .25), transparent 28%),
+        radial-gradient(circle at 8% 85%, rgba(243, 200, 93, .075), transparent 24%),
+        linear-gradient(145deg, #0b2140 0%, #07172f 58%, #06152b 100%);
+      box-shadow: var(--shadow), 0 0 0 1px rgba(255,255,255,.025) inset;
+    }
+
+    .app::before, .app::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      pointer-events: none;
+      border: 1px solid rgba(243, 200, 93, .12);
+      border-radius: 50%;
+      transform: rotate(-27deg);
+    }
+    .app::before {
+      width: 390px; height: 170px;
+      right: -205px; top: 82px;
+    }
+    .app::after {
+      width: 310px; height: 128px;
+      right: -165px; top: 103px;
+      border-color: rgba(117, 174, 224, .15);
+    }
+
+    .topbar {
+      min-height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 24px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(4, 15, 32, .22);
+    }
+    .brand { display: flex; align-items: center; gap: 11px; min-width: 0; }
+    .brand-mark {
+      position: relative;
+      flex: 0 0 34px;
+      width: 34px; height: 34px;
+      display: grid; place-items: center;
+      border: 1px solid rgba(243, 200, 93, .62);
+      border-radius: 50%;
+      color: var(--gold);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: -.7px;
+      box-shadow: 0 0 22px rgba(243, 200, 93, .12);
+    }
+    .brand-mark::before {
+      content: "";
+      position: absolute;
+      width: 43px; height: 15px;
+      border: 1px solid rgba(243, 200, 93, .55);
+      border-radius: 50%;
+      transform: rotate(-34deg);
+    }
+    .brand-name {
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .11em;
+      white-space: nowrap;
+    }
+    .brand-sub {
+      margin-top: 3px;
+      color: #9eb2c9;
+      font-size: 7px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      white-space: nowrap;
+    }
+    .top-tag {
+      color: var(--gold);
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .content {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(243,200,93,.35) transparent;
+      padding: 27px 32px 24px;
+    }
+    .content::-webkit-scrollbar { width: 5px; }
+    .content::-webkit-scrollbar-thumb { background: rgba(243,200,93,.3); border-radius: 10px; }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 13px;
+      color: var(--gold);
+      font-size: 9px;
+      line-height: 1.4;
+      font-weight: 800;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 19px; height: 1px;
+      background: var(--gold);
+      opacity: .9;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 440px;
+      margin-bottom: 13px;
+      color: #fff;
+      font-size: clamp(30px, 5.2vw, 42px);
+      line-height: 1.04;
+      letter-spacing: -.055em;
+      font-weight: 800;
+    }
+    h1 em, .gold { color: var(--gold); font-style: normal; }
+    .lead {
+      max-width: 405px;
+      margin-bottom: 20px;
+      color: #c2cfdd;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .orbit-scene {
+      position: relative;
+      height: 138px;
+      margin: 14px 0 20px;
+      overflow: hidden;
+      border: 1px solid rgba(130, 175, 218, .16);
+      border-radius: 16px;
+      background:
+        radial-gradient(circle at 50% 48%, rgba(42, 111, 174, .34), transparent 32%),
+        linear-gradient(120deg, rgba(14, 45, 79, .45), rgba(5, 19, 39, .25));
+    }
+    .planet {
+      position: absolute;
+      left: 50%; top: 50%;
+      width: 77px; height: 77px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 31% 25%, #fff2c4 0, #f2cb70 12%, #b47b36 39%, #254b72 70%, #0c2746 100%);
+      box-shadow: 0 0 36px rgba(243, 200, 93, .25), 0 0 80px rgba(54, 127, 194, .22);
+    }
+    .orbit {
+      position: absolute;
+      left: 50%; top: 50%;
+      width: 230px; height: 73px;
+      border: 1px solid rgba(243, 200, 93, .7);
+      border-radius: 50%;
+      transform: translate(-50%, -50%) rotate(-18deg);
+    }
+    .orbit.two {
+      width: 270px; height: 99px;
+      border-color: rgba(113, 175, 226, .48);
+      transform: translate(-50%, -50%) rotate(23deg);
+    }
+    .orbit-dot {
+      position: absolute;
+      left: calc(50% + 109px); top: 29px;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 12px var(--gold);
+    }
+    .scene-label {
+      position: absolute;
+      left: 17px; bottom: 13px;
+      color: #aebfd0;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 9px;
+      margin: 19px 0 22px;
+    }
+    .stat {
+      padding: 11px 10px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(255,255,255,.035);
+    }
+    .stat strong { display: block; color: var(--gold); font-size: 16px; line-height: 1.1; }
+    .stat span { display: block; margin-top: 5px; color: #aebfd0; font-size: 8px; letter-spacing: .08em; text-transform: uppercase; }
+
+    .primary, .secondary, .answer {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 46px;
+      padding: 0 19px;
+      border: 0;
+      border-radius: 9px;
+      font-size: 11px;
+      font-weight: 800;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+    .primary {
+      color: #15233a;
+      background: linear-gradient(135deg, #ffe08a, #efbd4b);
+      box-shadow: 0 8px 22px rgba(243, 200, 93, .18);
+    }
+    .primary:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(243,200,93,.28); }
+    .primary .arrow { font-size: 16px; line-height: 0; }
+    .secondary {
+      color: #d8e3ee;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.045);
+    }
+    .secondary:hover { background: rgba(255,255,255,.09); }
+    .note {
+      margin: 13px 0 0;
+      color: #8fa4bb;
+      font-size: 9px;
+      line-height: 1.55;
+    }
+
+    .field-label {
+      display: block;
+      margin: 23px 0 8px;
+      color: #dbe5ef;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .06em;
+    }
+    .url-input {
+      width: 100%;
+      height: 49px;
+      padding: 0 14px;
+      color: #fff;
+      border: 1px solid rgba(153, 187, 221, .35);
+      border-radius: 9px;
+      background: rgba(2, 13, 28, .58);
+      font-size: 13px;
+    }
+    .url-input::placeholder { color: #70869f; }
+    .url-error { min-height: 16px; margin: 7px 0 0; color: var(--red); font-size: 10px; }
+    .site-preview {
+      display: flex; align-items: center; gap: 8px;
+      margin-top: 16px; padding: 11px 12px;
+      border: 1px solid rgba(142,216,176,.2);
+      border-radius: 9px;
+      background: rgba(142,216,176,.055);
+      color: #b9d9c7; font-size: 10px; line-height: 1.45;
+    }
+    .site-preview b { color: var(--green); }
+
+    .progress-wrap { margin-bottom: 24px; }
+    .progress-meta {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 10px; margin-bottom: 9px;
+      color: #9fb1c5; font-size: 9px; font-weight: 800; letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .progress-meta strong { color: var(--gold); font-size: 10px; }
+    .progress-track {
+      height: 4px; overflow: hidden; border-radius: 20px;
+      background: rgba(255,255,255,.1);
+    }
+    .progress-fill {
+      height: 100%; border-radius: inherit;
+      background: linear-gradient(90deg, #d7a83c, #ffe08a);
+      box-shadow: 0 0 12px rgba(243,200,93,.3);
+      transition: width .25s ease;
+    }
+    .question-category {
+      display: inline-flex; align-items: center; gap: 7px;
+      margin-bottom: 14px; padding: 7px 10px;
+      border: 1px solid rgba(243,200,93,.25);
+      border-radius: 99px;
+      color: var(--gold-2);
+      background: rgba(243,200,93,.07);
+      font-size: 8px; font-weight: 800; letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .question-category::before {
+      content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--gold);
+      box-shadow: 0 0 8px var(--gold);
+    }
+    .question-number {
+      margin-bottom: 9px; color: #8097b0; font-size: 10px; font-weight: 700; letter-spacing: .13em;
+    }
+    .question-title {
+      max-width: 455px; margin-bottom: 13px;
+      color: #fff; font-size: clamp(23px, 4.2vw, 32px);
+      line-height: 1.13; letter-spacing: -.045em; font-weight: 800;
+    }
+    .question-help {
+      max-width: 410px; margin-bottom: 24px;
+      color: #aebfd0; font-size: 11px; line-height: 1.65;
+    }
+    .answer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
+    .answer {
+      min-height: 76px; flex-direction: column; gap: 5px;
+      border: 1px solid rgba(164, 191, 220, .22);
+      border-radius: 12px;
+      color: #f4f7fb;
+      background: linear-gradient(145deg, rgba(28,64,103,.58), rgba(9,29,55,.7));
+      font-size: 13px;
+    }
+    .answer span { color: #91a7bf; font-size: 8px; font-weight: 600; letter-spacing: .06em; }
+    .answer.yes:hover { border-color: rgba(142,216,176,.65); background: rgba(48,107,87,.25); }
+    .answer.no:hover { border-color: rgba(243,200,93,.6); background: rgba(130,91,28,.18); }
+    .answer .answer-icon { font-size: 19px; line-height: 1; }
+    .back-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 22px; }
+    .text-button {
+      padding: 7px 0; border: 0; color: #9fb1c5; background: transparent;
+      font-size: 10px; font-weight: 700;
+    }
+    .text-button:hover { color: var(--gold); }
+    .site-mini { max-width: 55%; overflow: hidden; color: #8298b1; font-size: 9px; text-overflow: ellipsis; white-space: nowrap; }
+
+    .result-head {
+      display: grid; grid-template-columns: 1fr 112px; gap: 15px; align-items: center;
+      margin: 2px 0 20px;
+    }
+    .result-head h1 { font-size: clamp(27px, 4.7vw, 37px); margin-bottom: 9px; }
+    .result-head .lead { margin-bottom: 0; font-size: 11px; }
+    .score-ring {
+      position: relative; width: 108px; height: 108px; display: grid; place-items: center;
+      border-radius: 50%;
+      background: conic-gradient(var(--gold) var(--score), rgba(255,255,255,.1) 0);
+      box-shadow: 0 0 25px rgba(243,200,93,.12);
+    }
+    .score-ring::before {
+      content: ""; position: absolute; inset: 7px; border-radius: 50%;
+      background: #0a1d38; border: 1px solid rgba(255,255,255,.08);
+    }
+    .score-number { position: relative; z-index: 1; color: #fff; font-size: 28px; font-weight: 800; letter-spacing: -.06em; }
+    .score-number small { color: #9fb1c5; font-size: 10px; letter-spacing: 0; }
+    .result-summary {
+      padding: 14px 15px; margin-bottom: 18px;
+      border: 1px solid rgba(243,200,93,.24); border-radius: 11px;
+      background: linear-gradient(110deg, rgba(243,200,93,.09), rgba(255,255,255,.025));
+      color: #c8d4e0; font-size: 11px; line-height: 1.6;
+    }
+    .result-summary strong { color: var(--gold-2); }
+    .section-label {
+      margin: 20px 0 10px; color: var(--gold);
+      font-size: 9px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
+    }
+    .pillar-list { display: grid; gap: 9px; }
+    .pillar {
+      padding: 12px 13px;
+      border: 1px solid var(--line); border-radius: 10px;
+      background: rgba(255,255,255,.035);
+    }
+    .pillar-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .pillar h3 { margin: 0; color: #f5f7fa; font-size: 11px; }
+    .pillar-count { color: var(--gold); font-size: 9px; font-weight: 800; white-space: nowrap; }
+    .pillar p { margin: 6px 0 0; color: #aebfd0; font-size: 10px; line-height: 1.55; }
+    .pillar.is-strong { border-color: rgba(142,216,176,.22); }
+    .pillar.is-strong .pillar-count { color: var(--green); }
+    .service-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 9px; }
+    .service-chip {
+      padding: 5px 7px; border-radius: 5px;
+      color: #f3dfac; background: rgba(243,200,93,.09);
+      font-size: 8px; font-weight: 700;
+    }
+    .gaps-list { display: grid; gap: 7px; margin: 0; padding: 0; list-style: none; }
+    .gaps-list li {
+      display: flex; align-items: flex-start; gap: 8px;
+      color: #bdcbd9; font-size: 10px; line-height: 1.5;
+    }
+    .gaps-list li::before { content: "↗"; color: var(--gold); font-weight: 800; }
+    .result-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+    .result-actions .primary, .result-actions .secondary { min-height: 42px; padding: 0 13px; font-size: 10px; }
+    .result-disclaimer {
+      margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line);
+      color: #8095ad; font-size: 9px; line-height: 1.55;
+    }
+
+    .bottombar {
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+      min-height: 38px; padding: 8px 24px;
+      border-top: 1px solid rgba(190,211,235,.11);
+      color: #8297ae; font-size: 8px; letter-spacing: .04em;
+      background: rgba(2, 12, 27, .2);
+    }
+    .bottombar strong { color: #d8c28d; font-weight: 700; }
+
+    @media (max-width: 640px) {
+      body { display: block; padding: 0; background: var(--navy); }
+      .app {
+        width: 100%; height: 100svh; max-height: none; aspect-ratio: auto;
+        border: 0; border-radius: 0; box-shadow: none;
+      }
+      .topbar { min-height: 62px; padding: 13px 19px; }
+      .content { padding: 25px 22px 28px; }
+      .bottombar { padding: 9px 19px; }
+      h1 { font-size: clamp(31px, 9vw, 39px); }
+      .orbit-scene { height: 125px; }
+      .result-head { grid-template-columns: 1fr 94px; gap: 8px; }
+      .score-ring { width: 88px; height: 88px; }
+      .score-number { font-size: 24px; }
+      .result-head h1 { font-size: 28px; }
+    }
+    @media (max-width: 360px) {
+      .content { padding-left: 17px; padding-right: 17px; }
+      .top-tag { font-size: 7px; }
+      .stats { gap: 6px; }
+      .stat { padding: 9px 7px; }
+      .answer { min-height: 68px; }
+      .result-head { grid-template-columns: 1fr 78px; }
+      .score-ring { width: 76px; height: 76px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+    @media print {
+      @page { size: A4; margin: 14mm; }
+      body { display: block; padding: 0; background: #fff; color: #12243b; }
+      .app { width: 100%; max-width: 100%; height: auto; max-height: none; aspect-ratio: auto; overflow: visible; border: 0; border-radius: 0; box-shadow: none; background: #fff; color: #12243b; }
+      .app::before, .app::after, .topbar, .bottombar, .result-actions, .result-disclaimer { display: none !important; }
+      .content { overflow: visible; padding: 0; }
+      .eyebrow, .section-label { color: #8b651b; }
+      .result-head h1, .pillar h3 { color: #12243b; }
+      .result-head .lead, .pillar p, .gaps-list li { color: #35485e; }
+      .result-summary, .pillar { border-color: #d7dce2; background: #f7f5ef; color: #25364b; break-inside: avoid; }
+      .result-summary strong { color: #805b12; }
+      .score-ring::before { background: #fff; border-color: #d7dce2; }
+      .score-number { color: #12243b; }
+      .score-number small { color: #526276; }
+      .service-chip { color: #62470d; background: #f7edcf; }
+      .pillar-list { gap: 7px; }
+      .result-head { grid-template-columns: 1fr 110px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app" id="app">
+    <header class="topbar">
+      <div class="brand" aria-label="Wendell Soares, estratégia e autoridade digital">
+        <div class="brand-mark" aria-hidden="true">WS</div>
+        <div>
+          <div class="brand-name">WENDELL SOARES</div>
+          <div class="brand-sub">ESTRATÉGIA • CONTEÚDO • AUTORIDADE</div>
+        </div>
+      </div>
+      <div class="top-tag">FERRAMENTA 01<br>CHECKLIST DIGITAL</div>
+    </header>
+
+    <main class="content" id="content" aria-live="polite"></main>
+
+    <footer class="bottombar">
+      <span>UM DIAGNÓSTICO PARA AJUSTAR SUA ÓRBITA.</span>
+      <strong>WS / 01</strong>
+    </footer>
+  </div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      // Personalize este endereço para apontar diretamente à sua página de contato, se desejar.
+      const CONTACT_URL = "https://wendellsoares.jor.br";
+
+      const questions = [
+        {
+          category: "Posicionamento",
+          question: "Em poucos segundos, um visitante entende o que sua marca faz, para quem e por que escolher você?",
+          help: "A proposta de valor precisa estar clara na página inicial, sem exigir que a pessoa investigue o site.",
+          service: "Estratégia de posicionamento"
+        },
+        {
+          category: "Estrutura do site",
+          question: "Cada serviço prioritário tem uma página própria, com descrição clara e uma chamada para ação?",
+          help: "Páginas específicas ajudam o visitante a encontrar a solução certa e dão contexto aos mecanismos de busca.",
+          service: "Arquitetura de páginas e landing pages"
+        },
+        {
+          category: "Performance",
+          question: "Seu site oferece navegação confortável no celular e carrega sem demora perceptível?",
+          help: "Considere a experiência real em um smartphone, não apenas a aparência em uma tela grande.",
+          service: "Experiência do usuário e performance"
+        },
+        {
+          category: "Conteúdo",
+          question: "Você publica conteúdos originais que respondem às dúvidas reais do seu público?",
+          help: "Artigos úteis, aprofundados e consistentes constroem relevância ao longo do tempo.",
+          service: "Estratégia editorial e conteúdo"
+        },
+        {
+          category: "Credibilidade editorial",
+          question: "Seus conteúdos importantes identificam quem escreve e demonstram experiência ou fontes confiáveis?",
+          help: "Autoria, experiência demonstrável e referências adequadas ajudam o leitor a avaliar a confiabilidade.",
+          service: "Autoridade editorial e credibilidade"
+        },
+        {
+          category: "Arquitetura de informação",
+          question: "As páginas do seu site se conectam por links internos e por uma organização clara de assuntos?",
+          help: "Uma boa estrutura permite que pessoas e mecanismos de busca compreendam como seus conteúdos se relacionam.",
+          service: "SEO semântico e arquitetura de informação"
+        },
+        {
+          category: "Prova de autoridade",
+          question: "Você apresenta evidências da sua experiência, como cases, depoimentos, projetos ou portfólio?",
+          help: "Afirmações ganham força quando acompanhadas de exemplos verificáveis e resultados contextualizados.",
+          service: "Cases, portfólio e construção de autoridade"
+        },
+        {
+          category: "Consistência de marca",
+          question: "Nome, descrição e informações de contato da sua marca são consistentes no site e nos canais oficiais?",
+          help: "Informações divergentes podem confundir pessoas, parceiros e sistemas que identificam sua marca.",
+          service: "Consistência de presença digital"
+        },
+        {
+          category: "SEO técnico",
+          question: "Suas páginas estratégicas têm títulos, descrições e configurações de indexação revisados?",
+          help: "Cada página importante deve ter metadados coerentes e estar disponível para rastreamento e indexação quando apropriado.",
+          service: "Auditoria e SEO técnico"
+        },
+        {
+          category: "Dados estruturados e IA",
+          question: "Seu site usa dados estruturados para identificar sua marca, profissionais, serviços e conteúdos?",
+          help: "Marcações adequadas ajudam sistemas compatíveis a interpretar informações sobre entidades e páginas.",
+          service: "Dados estruturados e preparação para busca por IA"
+        }
+      ];
+
+      const pillars = [
+        {
+          id: "performance",
+          title: "Experiência & performance",
+          indices: [1, 2],
+          description: "Estrutura das páginas, navegação e experiência em diferentes dispositivos.",
+          strong: "A base de navegação e estrutura está bem encaminhada."
+        },
+        {
+          id: "authority",
+          title: "Conteúdo & autoridade",
+          indices: [0, 3, 4, 6, 7],
+          description: "Clareza de posicionamento, conteúdo confiável e evidências de experiência.",
+          strong: "Sua comunicação já apresenta bons sinais de clareza e confiança."
+        },
+        {
+          id: "visibility",
+          title: "Encontrabilidade & IA",
+          indices: [5, 8, 9],
+          description: "Organização semântica, SEO técnico e contexto legível por sistemas de busca.",
+          strong: "Sua estrutura de encontrabilidade tem uma boa base."
+        }
+      ];
+
+      const levels = [
+        {
+          max: 3,
+          name: "Fundamentos",
+          summary: "Sua marca ainda precisa organizar sinais essenciais de clareza, confiança e encontrabilidade. Comece pelas bases antes de ampliar o alcance."
+        },
+        {
+          max: 6,
+          name: "Em construção",
+          summary: "Existem iniciativas importantes, mas elas ainda precisam trabalhar em conjunto. O próximo salto vem de consistência e prioridades bem definidas."
+        },
+        {
+          max: 8,
+          name: "Consistência",
+          summary: "Sua presença digital apresenta uma boa estrutura. Agora, vale corrigir lacunas específicas e fortalecer os sinais que diferenciam sua marca."
+        },
+        {
+          max: 10,
+          name: "Maturidade",
+          summary: "Sua marca demonstra uma base sólida nos critérios avaliados. O próximo movimento é aprofundar diferenciação, reputação e evolução contínua."
+        }
+      ];
+
+      const state = {
+        screen: "welcome",
+        siteUrl: "",
+        current: 0,
+        answers: Array(questions.length).fill(null)
+      };
+
+      const content = document.getElementById("content");
+
+      function escapeHtml(value) {
+        return String(value).replace(/[&<>"']/g, char => ({
+          "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
+        })[char]);
+      }
+
+      function getDomain(url) {
+        try { return new URL(url).hostname.replace(/^www\./, ""); }
+        catch { return url; }
+      }
+
+      function normalizeUrl(value) {
+        let raw = value.trim();
+        if (!raw) return null;
+        if (!/^https?:\/\//i.test(raw)) raw = "https://" + raw;
+        try {
+          const parsed = new URL(raw);
+          if (!parsed.hostname || !parsed.hostname.includes(".")) return null;
+          return parsed.href;
+        } catch {
+          return null;
+        }
+      }
+
+      function renderWelcome() {
+        content.innerHTML = `
+          <section>
+            <p class="eyebrow">Estratégia • Conteúdo • Reputação • IA</p>
+            <h1>Sua marca está pronta para ser <em>reconhecida?</em></h1>
+            <p class="lead">Responda a 10 perguntas objetivas e descubra como está a autoridade digital do seu site. No final, você recebe um nível de maturidade e caminhos práticos para evoluir.</p>
+
+            <div class="orbit-scene" aria-hidden="true">
+              <div class="orbit"></div><div class="orbit two"></div>
+              <div class="planet"></div><div class="orbit-dot"></div>
+              <div class="scene-label">Encontre sua órbita de autoridade</div>
+            </div>
+
+            <div class="stats" aria-label="Resumo do diagnóstico">
+              <div class="stat"><strong>10</strong><span>Critérios</span></div>
+              <div class="stat"><strong>3 min</strong><span>Tempo médio</span></div>
+              <div class="stat"><strong>4 níveis</strong><span>De maturidade</span></div>
+            </div>
+
+            <button class="primary" data-action="go-site">Começar diagnóstico <span class="arrow">↗</span></button>
+            <p class="note">Sem cadastro e sem respostas certas ou erradas. A avaliação é baseada nas informações que você fornecer.</p>
+          </section>`;
+      }
+
+      function renderSite() {
+        content.innerHTML = `
+          <section>
+            <p class="eyebrow">01 / Identificação do projeto</p>
+            <h1>Qual site vamos <em>avaliar?</em></h1>
+            <p class="lead">Insira o endereço da sua marca. Ele aparecerá no seu relatório para identificar o projeto analisado.</p>
+
+            <label class="field-label" for="site-url">ENDEREÇO DO SITE</label>
+            <input class="url-input" id="site-url" type="text" inputmode="url" autocomplete="url" placeholder="https://suaempresa.com.br" value="${escapeHtml(state.siteUrl)}" aria-describedby="url-error">
+            <p class="url-error" id="url-error" role="alert"></p>
+
+            <div class="site-preview">
+              <span aria-hidden="true">◉</span>
+              <span><b>Privacidade:</b> o endereço não será rastreado nem consultado automaticamente. O diagnóstico considera suas respostas.</span>
+            </div>
+
+            <div style="display:flex;gap:9px;align-items:center;margin-top:23px;flex-wrap:wrap">
+              <button class="primary" data-action="begin">Avaliar meu site <span class="arrow">↗</span></button>
+              <button class="text-button" data-action="back-welcome">Voltar</button>
+            </div>
+          </section>`;
+        const input = document.getElementById("site-url");
+        input.focus();
+        input.addEventListener("keydown", event => {
+          if (event.key === "Enter") beginAssessment();
+        });
+      }
+
+      function renderQuestion() {
+        const q = questions[state.current];
+        const step = state.current + 1;
+        const progress = (step / questions.length) * 100;
+        content.innerHTML = `
+          <section>
+            <div class="progress-wrap">
+              <div class="progress-meta"><span>Diagnóstico em andamento</span><strong>${String(step).padStart(2, "0")} / 10</strong></div>
+              <div class="progress-track" role="progressbar" aria-valuenow="${step}" aria-valuemin="1" aria-valuemax="10" aria-label="Progresso do diagnóstico">
+                <div class="progress-fill" style="width:${progress}%"></div>
+              </div>
+            </div>
+
+            <div class="question-category">${escapeHtml(q.category)}</div>
+            <div class="question-number">CRITÉRIO ${String(step).padStart(2, "0")}</div>
+            <h2 class="question-title">${escapeHtml(q.question)}</h2>
+            <p class="question-help">${escapeHtml(q.help)}</p>
+
+            <div class="answer-grid">
+              <button class="answer yes" data-action="answer" data-value="yes">
+                <span class="answer-icon" aria-hidden="true">✓</span>
+                SIM
+                <span>Isso já está implementado</span>
+              </button>
+              <button class="answer no" data-action="answer" data-value="no">
+                <span class="answer-icon" aria-hidden="true">—</span>
+                NÃO
+                <span>Esse ponto precisa evoluir</span>
+              </button>
+            </div>
+
+            <div class="back-row">
+              <button class="text-button" data-action="back-question">← Voltar</button>
+              <span class="site-mini" title="${escapeHtml(state.siteUrl)}">${escapeHtml(getDomain(state.siteUrl))}</span>
+            </div>
+          </section>`;
+      }
+
+      function getLevel(score) {
+        return levels.find(level => score <= level.max) || levels[levels.length - 1];
+      }
+
+      function renderResult() {
+        const score = state.answers.filter(answer => answer === true).length;
+        const gaps = state.answers.filter(answer => answer === false).length;
+        const level = getLevel(score);
+        const percent = score * 10;
+        const domain = getDomain(state.siteUrl);
+
+        const pillarResults = pillars.map(pillar => {
+          const missing = pillar.indices.filter(index => state.answers[index] === false);
+          const passed = pillar.indices.length - missing.length;
+          return { ...pillar, missing, passed, count: missing.length };
+        }).sort((a, b) => b.count - a.count);
+
+        const pillarMarkup = pillarResults.map(pillar => {
+          const isStrong = pillar.count === 0;
+          const serviceNames = pillar.missing.map(index => questions[index].service);
+          const recommendations = serviceNames.length
+            ? `<div class="service-chips">${serviceNames.map(name => `<span class="service-chip">${escapeHtml(name)}</span>`).join("")}</div>`
+            : "";
+          return `
+            <article class="pillar ${isStrong ? "is-strong" : ""}">
+              <div class="pillar-top">
+                <h3>${escapeHtml(pillar.title)}</h3>
+                <span class="pillar-count">${isStrong ? "PONTO FORTE" : `${pillar.count} oportunidade${pillar.count > 1 ? "s" : ""}`}</span>
+              </div>
+              <p>${isStrong ? escapeHtml(pillar.strong) : escapeHtml(pillar.description)}</p>
+              ${recommendations}
+            </article>`;
+        }).join("");
+
+        const gapMarkup = state.answers.map((answer, index) => answer === false
+          ? `<li>${escapeHtml(questions[index].question)} <strong style="color:#f3c85d;font-weight:700">Sugestão: ${escapeHtml(questions[index].service)}.</strong></li>`
+          : "").filter(Boolean).join("");
+
+        const nextMove = gaps === 0
+          ? "Você não sinalizou lacunas nos critérios deste checklist. Uma auditoria aprofundada pode validar a implementação e encontrar oportunidades mais avançadas."
+          : `Identificamos ${gaps} ponto${gaps > 1 ? "s" : ""} que merece${gaps > 1 ? "m" : ""} atenção. Comece pelas frentes com mais oportunidades e evite tentar resolver tudo ao mesmo tempo.`;
+
+        content.innerHTML = `
+          <section>
+            <p class="eyebrow">Diagnóstico concluído / ${escapeHtml(domain)}</p>
+            <div class="result-head">
+              <div>
+                <h1>Sua marca está no nível <em>${escapeHtml(level.name)}.</em></h1>
+                <p class="lead">${escapeHtml(level.summary)}</p>
+              </div>
+              <div class="score-ring" style="--score:${percent * 1}%;" role="img" aria-label="${score} de 10 critérios atendidos">
+                <div class="score-number">${score}<small>/10</small></div>
+              </div>
+            </div>
+
+            <div class="result-summary"><strong>Leitura estratégica:</strong> ${escapeHtml(nextMove)} Seu site foi identificado como <strong>${escapeHtml(domain)}</strong>.</div>
+
+            <div class="section-label">Onde concentrar energia</div>
+            <div class="pillar-list">${pillarMarkup}</div>
+
+            ${gaps > 0 ? `
+              <div class="section-label">Oportunidades identificadas</div>
+              <ul class="gaps-list">${gapMarkup}</ul>
+            ` : `
+              <div class="section-label">Próximo movimento</div>
+              <p class="question-help">Sua autoavaliação não apontou respostas negativas. O próximo passo é verificar tecnicamente se esses recursos estão implementados da maneira mais adequada.</p>
+            `}
+
+            <div class="result-actions">
+              <button class="primary" data-action="contact">Conversar sobre meu diagnóstico <span class="arrow">↗</span></button>
+              <button class="secondary" data-action="copy">Copiar resultado</button>
+              <button class="secondary" data-action="print">Salvar PDF</button>
+            </div>
+            <div class="result-disclaimer">Este é um diagnóstico orientativo de autopercepção, baseado exclusivamente nas respostas fornecidas. O site não foi rastreado, auditado ou validado tecnicamente. A pontuação não representa uma certificação de SEO, GEO ou autoridade.</div>
+            <div style="margin-top:15px"><button class="text-button" data-action="restart">↺ Refazer diagnóstico</button></div>
+          </section>`;
+
+        state.resultText = [
+          "CHECKLIST DE AUTORIDADE DIGITAL | WENDELL SOARES",
+          `Site: ${state.siteUrl}`,
+          `Resultado: ${score}/10 | Nível ${level.name}`,
+          level.summary,
+          "",
+          "OPORTUNIDADES:",
+          ...state.answers.map((answer, index) => answer === false ? `- ${questions[index].question} Sugestão: ${questions[index].service}.` : null).filter(Boolean),
+          "",
+          "Diagnóstico orientativo baseado nas respostas fornecidas. Não houve rastreamento ou auditoria técnica do site."
+        ].join("\n");
+      }
+
+      function beginAssessment() {
+        const input = document.getElementById("site-url");
+        const error = document.getElementById("url-error");
+        const normalized = normalizeUrl(input.value);
+        if (!normalized) {
+          error.textContent = "Informe um endereço válido, como suaempresa.com.br.";
+          input.setAttribute("aria-invalid", "true");
+          input.focus();
+          return;
+        }
+        state.siteUrl = normalized;
+        state.current = 0;
+        state.answers = Array(questions.length).fill(null);
+        state.screen = "question";
+        render();
+      }
+
+      function answerQuestion(value) {
+        state.answers[state.current] = value === "yes";
+        if (state.current < questions.length - 1) {
+          state.current += 1;
+          renderQuestion();
+        } else {
+          state.screen = "result";
+          renderResult();
+        }
+      }
+
+      function render() {
+        if (state.screen === "welcome") renderWelcome();
+        else if (state.screen === "site") renderSite();
+        else if (state.screen === "question") renderQuestion();
+        else if (state.screen === "result") renderResult();
+        content.scrollTop = 0;
+      }
+
+      async function copyResult() {
+        const text = state.resultText || "";
+        try {
+          await navigator.clipboard.writeText(text);
+          const button = content.querySelector('[data-action="copy"]');
+          if (button) {
+            button.textContent = "Resultado copiado ✓";
+            setTimeout(() => { if (button.isConnected) button.textContent = "Copiar resultado"; }, 1800);
+          }
+        } catch {
+          const textarea = document.createElement("textarea");
+          textarea.value = text;
+          textarea.style.position = "fixed";
+          textarea.style.opacity = "0";
+          document.body.appendChild(textarea);
+          textarea.select();
+          try { document.execCommand("copy"); } catch {}
+          textarea.remove();
+          const button = content.querySelector('[data-action="copy"]');
+          if (button) button.textContent = "Selecione e copie pelo navegador";
+        }
+      }
+
+      content.addEventListener("click", event => {
+        const button = event.target.closest("[data-action]");
+        if (!button) return;
+        const action = button.dataset.action;
+
+        if (action === "go-site") {
+          state.screen = "site";
+          render();
+        } else if (action === "back-welcome") {
+          state.screen = "welcome";
+          render();
+        } else if (action === "begin") {
+          beginAssessment();
+        } else if (action === "answer") {
+          answerQuestion(button.dataset.value);
+        } else if (action === "back-question") {
+          if (state.current > 0) {
+            state.current -= 1;
+            renderQuestion();
+          } else {
+            state.screen = "site";
+            render();
+          }
+        } else if (action === "contact") {
+          window.open(CONTACT_URL, "_blank", "noopener,noreferrer");
+        } else if (action === "copy") {
+          copyResult();
+        } else if (action === "print") {
+          window.print();
+        } else if (action === "restart") {
+          state.screen = "welcome";
+          state.current = 0;
+          state.answers = Array(questions.length).fill(null);
+          render();
+        }
+      });
+
+      render();
+    })();
+  </script>
+</body>
+</html>
